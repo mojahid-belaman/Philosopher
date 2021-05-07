@@ -6,12 +6,26 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+typedef struct s_phil
+{
+    int 		index;
+    int 		ph_eat;
+    int 		ph_left;
+    int			ph_right;
+    int			eat_count;
+    pthread_t 	tid;
+	pthread_mutex_t	mutex;
+
+}              t_phil;
+
 typedef struct s_var
 {
-    int num_phil;
-    int time_die;
-    int time_eat;
-    int time_sleep;
+    int 	num_phil;
+    int 	time_die;
+    int 	time_eat;
+    int 	time_sleep;
+	int		some_die;
+	t_phil	phil;
 
 }              t_var;
 

@@ -1,5 +1,17 @@
 #include "philo_one.h"
 
+void	phil_init(t_var *var)
+{
+	int	i;
+
+	i = -1;
+	while (++i < var->num_phil)
+	{
+		
+	}
+	
+}
+
 int main(int argc, char **argv)
 {
 	t_var	var;
@@ -27,9 +39,7 @@ int main(int argc, char **argv)
 		var.time_die = ft_atoi(argv[2]);
 		var.time_eat = ft_atoi(argv[3]);
 		var.time_sleep = ft_atoi(argv[4]);
-
-		printf("num_phil:%d | time_die:%d | time_eat:%d | time_sleep:%d\n", var.num_phil, var.time_die, var.time_eat, var.time_sleep);
-		
+		phil_init(&var);		
 	}
 	
 	return (0);
