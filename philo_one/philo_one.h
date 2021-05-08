@@ -8,12 +8,12 @@
 
 typedef struct s_phil
 {
-    int 		index;
-    int 		ph_eat;
-    int 		ph_left;
-    int			ph_right;
-    int			eat_count;
-    pthread_t 	tid;
+    int 		    index;
+    int 		    ph_eat;
+    int 		    ph_left;
+    int			    ph_right;
+    int			    eat_count;
+    pthread_t       tid;
 	pthread_mutex_t	mutex;
 
 }              t_phil;
@@ -25,7 +25,7 @@ typedef struct s_var
     int 	time_eat;
     int 	time_sleep;
 	int		some_die;
-	t_phil	phil;
+	t_phil	*phil;
 
 }              t_var;
 

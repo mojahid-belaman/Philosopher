@@ -5,9 +5,13 @@ void	phil_init(t_var *var)
 	int	i;
 
 	i = -1;
+	var->phil = malloc(sizeof(t_phil) * var->num_phil);
 	while (++i < var->num_phil)
 	{
-		
+		var->phil[i].index = i;
+		var->phil[i].eat_count = -1;
+		var->phil[i].ph_left = i;
+		var->phil[i].ph_right = (i + 1) % var->num_phil;
 	}
 	
 }
