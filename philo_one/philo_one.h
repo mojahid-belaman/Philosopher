@@ -19,13 +19,10 @@ typedef struct s_var
     int 	        time_sleep;
 	int		        is_died;
     int             count;
-    unsigned    long    t_start;
-    unsigned    long    limit;
     int 		    index;
     int 		    ph_eat;
     int 		    ph_left;
     int			    ph_right;
-    int			    eat_count;
     pthread_t       tid;
     pthread_mutex_t *forks_mutex;
     pthread_mutex_t msg_mutex;

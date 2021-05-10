@@ -1,6 +1,6 @@
 #include "philo_one.h"
 
-unsigned	long	get_time()
+int	get_time()
 {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
@@ -10,7 +10,6 @@ unsigned	long	get_time()
 void	aff_msg(t_var *var, int status)
 {
 	pthread_mutex_lock(&var->msg_mutex);
-	ft_putnbr_fd(get_time() - var->t_start, 1);
 	ft_putstr_fd(" ", 1);
 	ft_putnbr_fd(var->index + 1, 1);
 	ft_putstr_fd(" ", 1);
@@ -22,8 +21,7 @@ void	aff_msg(t_var *var, int status)
 		ft_putstr_fd("is sleeping\n", 1);
 	else if (status == THINK)
 		ft_putstr_fd("is thinking\n", 1);
-	if (status != DIED)
-		pthread_mutex_unlock(&var->msg_mutex);
+	pthread_mutex_unlock(&var->msg_mutex);
 }
 
 int	take_forks(t_var *var)
@@ -32,12 +30,9 @@ int	take_forks(t_var *var)
 	{
 		pthread_mutex_lock(&var->forks_mutex[var->ph_left]);
 		aff_msg(var, FORK);
-		if (var->is_died)
-		{
-			pthread_mutex_lock(&var->forks_mutex[var->ph_right]);
-			aff_msg(var, FORK);
-			return (1);
-		}
+		pthread_mutex_lock(&var->forks_mutex[var->ph_right]);
+		aff_msg(var, FORK);
+		return (1);
 	}
 	return (0);
 }
@@ -45,12 +40,11 @@ int	take_forks(t_var *var)
 int	eat_phil(t_var *var)
 {
 	int	t_eat;
-
 	t_eat = var->time_eat * 1000;
 	if (var->is_died)
 	{
 		aff_msg(var, EAT);
-		usleep(t_eat);
+		// usleep(t_eat);
 		return (1);
 	}
 	return (0);
@@ -75,7 +69,7 @@ int	sleep_phil(t_var *var)
 	if (var->is_died)
 	{
 		aff_msg(var, SLEEP);
-		usleep(t_sleep);
+		// usleep(t_sleep);
 		return (1);
 	}
 	return (0);
@@ -97,7 +91,6 @@ void	*routine_phil(void	*data)
 		if (!sleep_phil(var))
 			return (NULL);
 		aff_msg(var, THINK);
-		usleep(100);
 	}
 	
 	return (NULL);
@@ -117,14 +110,13 @@ void	phil_init(t_var *var)
 	while (++i < var->num_phil)
 	{
 		var[i].index = i;
-		var[i].eat_count = 0;
 		var[i].ph_left = i;
 		var[i].ph_right = (i + 1) % var->num_phil;
 	}
 	var->is_died = 1;
 
 	//start circle philosopher
-	var->t_start =  get_time();
+	// var->t_start =  get_time();
 	i = -1;
 	while (++i < var->num_phil)
 	{
