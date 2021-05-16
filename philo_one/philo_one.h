@@ -11,6 +11,16 @@
 # define THINK 3
 # define FORK 4
 # define DIED 5
+typedef struct s_philo
+{
+    int 		    index;
+    int 		    ph_left;
+    int			    ph_right;
+    int             limit;
+    pthread_t       tid;
+}               t_philo;
+
+
 typedef struct s_var
 {
     int 	        num_phil;
@@ -19,14 +29,9 @@ typedef struct s_var
     int 	        time_sleep;
 	int		        is_died;
     int             count;
-    int 		    index;
-    int 		    ph_eat;
-    int 		    ph_left;
-    int			    ph_right;
-    pthread_t       tid;
+    int             start;
     pthread_mutex_t *forks_mutex;
     pthread_mutex_t msg_mutex;
-
 }              t_var;
 
 long long   ft_atoi(const char *str);
