@@ -16,8 +16,13 @@ typedef struct s_philo
     int 		    index;
     int 		    ph_left;
     int			    ph_right;
-    int             limit;
+    int             check_eat;
+    unsigned int    t_start;
+    unsigned int    t_limit;
+    int             eat_count;
     pthread_t       tid;
+    pthread_t       tid_health;
+    pthread_mutex_t *die_mutex;
 }               t_philo;
 
 
@@ -27,17 +32,18 @@ typedef struct s_var
     int 	        time_die;
     int 	        time_eat;
     int 	        time_sleep;
-	int		        is_died;
+	int		        is_dead;
     int             count;
-    int             start;
+    unsigned int    start;
+    int             all_phil_eat;
     pthread_mutex_t *forks_mutex;
     pthread_mutex_t msg_mutex;
 }              t_var;
 
 long long   ft_atoi(const char *str);
-void	    ft_putstr_fd(char *s, int fd);
 size_t	    ft_strlen(const char *str);
 int         ft_isnum(int c);
 void        ft_putchar_fd(char c, int fd);
 void        ft_putnbr_fd(int n, int fd);
+void        ft_putstr_fd(char *s, int fd);
 #endif
