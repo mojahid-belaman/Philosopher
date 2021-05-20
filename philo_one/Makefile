@@ -8,6 +8,7 @@ SRC =	ft_atoi.c\
 		ft_putchar_fd.c\
 		ft_putnbr_fd.c\
 		ft_putstr_fd.c\
+		ft_init_philo_mutex.c\
 		main.c 
 OBJ = $(SRC:.c=.o)
 
