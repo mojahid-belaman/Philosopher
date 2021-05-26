@@ -9,6 +9,14 @@ SRC =	ft_atoi.c\
 		ft_putnbr_fd.c\
 		ft_putstr_fd.c\
 		ft_init_philo_mutex.c\
+		parse.c\
+		life_philosopher.c\
+		msg_print.c\
+		sleep_philo.c\
+		take_fork.c\
+		eat_philo.c\
+		time.c\
+		free_destroy.c\
 		main.c 
 OBJ = $(SRC:.c=.o)
 

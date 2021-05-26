@@ -20,12 +20,10 @@ typedef struct s_philo
     unsigned int    t_limit;
     int             eat_count;
 	int		        is_dead;
+    int             check_each_ph_eat;
     pthread_t       tid;
     pthread_t       tid_health;
     pthread_t       tid_eat;
-    pthread_mutex_t *die_mutex;
-    pthread_mutex_t *mutex;
-    int             check_each_ph_eat;
 }               t_philo;
 
 
@@ -36,10 +34,12 @@ typedef struct s_var
     int 	        time_eat;
     int 	        time_sleep;
     int             count;
-    int             c;
     unsigned int    start;
-    pthread_mutex_t *forks_mutex;
+    int             error;
+    pthread_mutex_t die_mutex;
+    pthread_mutex_t mutex;
     pthread_mutex_t msg_mutex;
+    pthread_mutex_t *forks_mutex;
 }              t_var;
 
 long long       ft_atoi(const char *str);
@@ -51,5 +51,14 @@ void            ft_putstr_fd(char *s, int fd);
 t_var           *get_struct_var(t_var *ptr);
 unsigned int	get_time();
 t_philo         *init_philo_mutex();
+void            aff_msg(t_philo *ph, int status);
+void            take_forks(t_philo *ph);
+void            eat_phil(t_philo *ph);
+void            release_forks(t_philo *ph);
+void            *routine_phil(void	*data);
+void            sleep_phil(t_philo *ph);
+void            parse_data(int argc, char **argv);
+unsigned int    get_time();
+void            clear_destroy_ph(t_philo *philo);
 #endif     
       
